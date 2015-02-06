@@ -19,15 +19,15 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void act2Clicked(View v) {
-        Intent i = new Intent(this, Activity2.class);
-        startActivity(i);
+        Intent i = new Intent(this, Activity2.class);  //start new activity without sending info or receive
+        startActivity(i);               //no need the result
     }
 
     public void act3Clicked(View v) {
         Intent i = new Intent(this, Activity3.class);
         EditText etInput = (EditText)findViewById(R.id.etInput);
-        i.putExtra("toAct3", etInput.getText().toString());
-        startActivityForResult(i, 88);
+        i.putExtra("toAct3", etInput.getText().toString()); //attach string
+        startActivityForResult(i, 88);   //need the result back
     }
 
     @Override
@@ -35,11 +35,11 @@ public class MainActivity extends ActionBarActivity {
         TextView tvResult = (TextView)findViewById(R.id.tvResult);
 
         if (requestCode == 88) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == RESULT_OK) {                          //when click on the button in the application
                 String result = data.getStringExtra("toAct1");
                 tvResult.setText(result);
             }
-            else if (resultCode == RESULT_CANCELED) {
+            else if (resultCode == RESULT_CANCELED) {           //when click the button on the phone
                 tvResult.setText("CANCELED");
             }
         }
